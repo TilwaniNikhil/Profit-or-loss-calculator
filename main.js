@@ -16,16 +16,21 @@ function submitHandler() {
 }
 
 function calculateProfitAndLoss(initial, quantity, current) {
+  if ( initial < 0 && quantity < 0 && current < 1){
+    showOutput(
+      `Please note :- The value cannot be less then 0`
+    );
+  }else{
   if (initial > current) {
-    var loss = (initial - current) * quantity;
-    var lossPercentage = (loss / initial) * 100;
+    var loss = (Number (initial) - Number(current)) * quantity;
+    var lossPercentage = (((loss) / (initial)) * 10).toFixed(2);
 
     showOutput(
       `Hey, the loss is ${loss} and the percent is ${lossPercentage}%`
     );
   } else if (current > initial) {
-    var profit = (current - initial) * quantity;
-    var profitPercentage = (profit / initial) * 100;
+    var profit = (Number (current) - Number (initial)) * quantity;
+    var profitPercentage = (((profit) / (initial)) * 10).toFixed(2);
 
     showOutput(
       `Hey, the profit is ${profit} and the percent is ${profitPercentage}%`
@@ -33,6 +38,7 @@ function calculateProfitAndLoss(initial, quantity, current) {
   } else {
     showOutput(`No pain no gain and no gain no pain`);
   }
+}
 }
 
 function showOutput(message) {
